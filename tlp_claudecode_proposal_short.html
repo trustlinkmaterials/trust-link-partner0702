@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code 導入支援｜Trust Link Partner 株式会社</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0a0a0a;
+    --amber: #d4891a;
+    --amber-light: #fef5e7;
+    --white: #ffffff;
+    --gray-light: #f4f4f4;
+    --gray-mid: #5a5a5a;
+    --gray-border: #e0e0e0;
+    --text: #1a1a1a;
+    --green: #27ae60;
+    --blue: #1a5276;
+    --blue-light: #eaf2f8;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .doc {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* ===== PAGE 1 ===== */
+  .page1 {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+  }
+
+  .p1-hero {
+    background: var(--black);
+    padding: 48px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .p1-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,137,26,0.08) 0%, transparent 70%);
+  }
+  .p1-top {
+    font-size: 10px;
+    color: #aaa;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+  .p1-hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .p1-hero h1 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+  .p1-hero .lead {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.9;
+  }
+
+  .p1-body {
+    padding: 28px 48px;
+    flex: 1;
+  }
+
+  .mini-sec-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--black);
+    margin: 20px 0 10px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--amber);
+    display: inline-block;
+  }
+  .mini-sec-title:first-child { margin-top: 0; }
+
+  .p1-body p {
+    font-size: 13px;
+    color: var(--gray-mid);
+    line-height: 1.9;
+    margin-bottom: 12px;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .stat-mini {
+    padding: 16px;
+    border-radius: 6px;
+    border: 1px solid var(--gray-border);
+  }
+  .stat-mini .sm-big {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .stat-mini .sm-sub {
+    font-size: 10px;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+  .stat-mini .sm-body {
+    font-size: 11px;
+    color: var(--gray-mid);
+    line-height: 1.7;
+  }
+
+  .crisis-mini {
+    background: #1a1a1a;
+    color: #ccc;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin: 14px 0;
+    font-size: 12px;
+    line-height: 1.8;
+    border-left: 3px solid var(--amber);
+  }
+  .crisis-mini strong { color: var(--white); }
+  .crisis-mini em { color: var(--amber); font-style: italic; }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .cmp-col {
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--gray-mid);
+  }
+  .cmp-col.bad { background: #fafafa; border: 1px solid #e5e5e5; }
+  .cmp-col.good { background: #f7fdf7; border: 1px solid #c8e6c8; }
+  .cmp-col h4 { font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+  .cmp-col.bad h4 { color: #999; }
+  .cmp-col.good h4 { color: var(--green); }
+  .cmp-col .item { margin-bottom: 3px; }
+  .cmp-col.bad .item::before { content: '✗ '; color: #ccc; }
+  .cmp-col.good .item::before { content: '◎ '; color: var(--green); }
+
+  .session-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 14px 0;
+  }
+  .sess-mini {
+    background: var(--gray-light);
+    padding: 12px 8px;
+    border-radius: 6px;
+    text-align: center;
+    border-top: 2px solid var(--amber);
+  }
+  .sess-mini .sn { font-size: 9px; color: var(--amber); font-weight: 700; letter-spacing: 1px; }
+  .sess-mini .st { font-size: 11px; font-weight: 700; color: var(--text); margin: 4px 0 2px; }
+  .sess-mini .sd { font-size: 10px; color: var(--gray-mid); line-height: 1.5; }
+
+  .price-bar {
+    background: var(--black);
+    color: var(--white);
+    padding: 18px 24px;
+    border-radius: 8px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .price-bar .pb-left {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--amber);
+    line-height: 1.6;
+  }
+  .price-bar .pb-center {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 28px;
+    font-weight: 900;
+  }
+  .price-bar .pb-right {
+    font-size: 11px;
+    color: #aaa;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .note-xs {
+    font-size: 10px;
+    color: #999;
+    line-height: 1.7;
+  }
+
+  /* ===== PAGE 2 ===== */
+  .page2 {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    page-break-before: always;
+  }
+
+  .p2-header {
+    background: var(--black);
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .p2-header h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--white);
+  }
+  .p2-header span {
+    font-size: 10px;
+    color: var(--amber);
+    letter-spacing: 2px;
+  }
+
+  .p2-body {
+    padding: 24px 48px;
+    flex: 1;
+  }
+  .p2-body h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    margin: 16px 0 8px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--gray-border);
+  }
+  .p2-body h3:first-child { margin-top: 0; }
+  .p2-body p {
+    font-size: 12px;
+    color: var(--gray-mid);
+    line-height: 1.8;
+    margin-bottom: 8px;
+  }
+
+  .info-mini {
+    background: var(--blue-light);
+    border-left: 3px solid var(--blue);
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 12px;
+    color: #2c3e50;
+    line-height: 1.8;
+  }
+  .info-mini strong { color: var(--blue); }
+
+  .plan-tbl {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 11px;
+  }
+  .plan-tbl th {
+    background: var(--black);
+    color: var(--white);
+    padding: 7px 10px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 10px;
+  }
+  .plan-tbl td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--gray-border);
+    color: var(--text);
+  }
+  .plan-tbl .rec td {
+    background: #fff8e1;
+    font-weight: 600;
+  }
+  .badge-s {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--white);
+    font-size: 8px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-left: 4px;
+    letter-spacing: 1px;
+    vertical-align: middle;
+  }
+
+  .outcomes-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .out-item {
+    background: #f7fdf7;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .out-item::before {
+    content: '✓ ';
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .examples-mini {
+    background: var(--gray-light);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 10px 0;
+  }
+  .examples-mini h4 { font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .examples-mini p { font-size: 11px; color: var(--gray-mid); line-height: 1.7; margin: 0; }
+
+  .p2-footer {
+    background: var(--black);
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .p2-footer .left {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .p2-footer .left small {
+    display: block;
+    font-size: 10px;
+    color: #888;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .p2-footer .right {
+    text-align: right;
+    font-size: 11px;
+    color: #aaa;
+    line-height: 1.7;
+  }
+  .p2-footer .right a {
+    color: var(--amber);
+    text-decoration: none;
+  }
+
+  .copy-ft {
+    padding: 10px 48px;
+    font-size: 9px;
+    color: #ccc;
+    text-align: center;
+    border-top: 1px solid #eee;
+  }
+
+  @media (max-width: 600px) {
+    .p1-hero, .p1-body, .p2-body { padding-left: 24px; padding-right: 24px; }
+    .stat-row, .compare-row, .outcomes-row { grid-template-columns: 1fr; }
+    .session-row { grid-template-columns: 1fr 1fr; }
+    .price-bar { flex-direction: column; gap: 8px; text-align: center; }
+    .p2-header, .p2-footer { padding-left: 24px; padding-right: 24px; }
+    .p2-footer { flex-direction: column; gap: 12px; text-align: center; }
+    .p2-footer .right { text-align: center; }
+  }
+
+  @media print {
+    .doc { max-width: 100%; }
+    .page1, .page2 { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <!-- ===== PAGE 1 ===== -->
+  <div class="page1">
+    <div class="p1-hero">
+      <div class="p1-top">Trust Link Partner 株式会社 · パチンコホール運営企業向け</div>
+      <h1>今日が、<em>一番早い。</em><br>Claude Code 導入支援 &<br>内製化伴走プログラム</h1>
+      <div class="lead">
+        「先に動いた企業」と「様子見を続けた企業」には、すでに大きな差が生まれています。<br>
+        今日からでも遅くはありません。見送る判断にも、将来コストは発生します。
+      </div>
+    </div>
+
+    <div class="p1-body">
+
+      <div class="mini-sec-title">なぜ今か — 見えていないコストと、広がる差</div>
+
+      <div class="stat-row">
+        <div class="stat-mini">
+          <div class="sm-big">見えにくい固定費</div>
+          <div class="sm-sub">毎月の外部サービス費用</div>
+          <div class="sm-body">レポート自動化、データ集計、帳票出力など、便利なサービスが積み上がるほど、固定費と仕様変更への依存も増えていきます。</div>
+        </div>
+        <div class="stat-mini">
+          <div class="sm-big">自社資産として蓄積</div>
+          <div class="sm-sub">内製化後のメリット</div>
+          <div class="sm-body">Claude Codeで作ったツールは自社資産として蓄積される。外部サービスへの依存を減らし、必要に応じて自社で改善できる。</div>
+        </div>
+      </div>
+
+      <div class="crisis-mini">
+        ChatGPTが出た時、すぐに業務へ取り入れた企業と、様子を見続けた企業の間には、すでに差が生まれています。<em>Claude Codeも、同じ分岐点になり得ます。</em>
+      </div>
+
+      <div class="mini-sec-title">よくある研修との違い</div>
+
+      <div class="compare-row">
+        <div class="cmp-col bad">
+          <h4>✗ 一般的なAI研修</h4>
+          <div class="item">「AIとは何か」から始まる座学</div>
+          <div class="item">テンプレのハンズオン演習</div>
+          <div class="item">成果物のないコンサルティング</div>
+          <div class="item">終わりの見えない伴走契約</div>
+        </div>
+        <div class="cmp-col good">
+          <h4>◎ 弊社の伴走</h4>
+          <div class="item">御社の実務をそのままテーマに</div>
+          <div class="item">毎回、動くものを作って終わる</div>
+          <div class="item">期日とゴールを最初に確定</div>
+          <div class="item">内製化できたら伴走終了</div>
+        </div>
+      </div>
+
+      <div class="mini-sec-title">基本プラン：4セッションで内製化体制をつくる</div>
+      <p>コードが書けなくていい。「何を自動化したいか」さえあれば、今日から始められる。</p>
+
+      <div class="session-row">
+        <div class="sess-mini">
+          <div class="sn">SESSION 01</div>
+          <div class="st">現状把握 & セットアップ</div>
+          <div class="sd">環境構築、業務棚卸し、自動化テーマの確定</div>
+        </div>
+        <div class="sess-mini">
+          <div class="sn">SESSION 02</div>
+          <div class="st">実務ツール第一弾 制作</div>
+          <div class="sd">テーマに沿って実際に動くツールを完成させる</div>
+        </div>
+        <div class="sess-mini">
+          <div class="sn">SESSION 03</div>
+          <div class="st">改善 & 応用展開</div>
+          <div class="sd">運用課題の改善と次テーマへの展開方法を習得</div>
+        </div>
+        <div class="sess-mini">
+          <div class="sn">SESSION 04</div>
+          <div class="st">内製化体制の確立</div>
+          <div class="sd">社内で自走できる状態を作り、伴走を終了する</div>
+        </div>
+      </div>
+
+      <div class="price-bar">
+        <div class="pb-left">基本プラン<br>4 SESSIONS</div>
+        <div class="pb-center">¥120,000</div>
+        <div class="pb-right">税別 ／ 別途交通費<br>約120分 × 4回</div>
+      </div>
+      <p class="note-xs">
+        ※ 追加セッション ¥30,000/回（税別） ｜ オンライン対応可 ｜ 事前相談は無料
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 2 ===== -->
+  <div class="page2">
+    <div class="p2-header">
+      <h2>サービス詳細</h2>
+      <span>PAGE 2 / 2</span>
+    </div>
+
+    <div class="p2-body">
+
+      <h3>Claude サブスクリプション契約について（必須）</h3>
+      <p>
+        本サービスのご利用にあたり、Anthropic社が提供するClaude有料プランへのご契約が別途必要です。
+        Claudeのサブスクリプション料金は貴社にてお支払いいただきます（弊社サービス料金には含まれません）。
+      </p>
+
+      <div class="info-mini">
+        <strong>システム構築には Max プランを推奨しています。</strong><br>
+        Claude Codeを使った本格的な業務ツール開発には、十分な利用枠が確保できるMaxプランをお勧めしています。
+        導入初期はMaxプランで開発を進め、内製化達成後にProプランへ切り替えることも可能です。
+      </div>
+
+      <table class="plan-tbl">
+        <thead>
+          <tr>
+            <th>プラン</th>
+            <th>月額</th>
+            <th>利用枠</th>
+            <th>用途</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pro</td>
+            <td>$20／月（約¥3,100）</td>
+            <td>基準</td>
+            <td>基本利用・学習</td>
+          </tr>
+          <tr class="rec">
+            <td>Max 5x <span class="badge-s">推奨</span></td>
+            <td>$100／月（約¥15,500）</td>
+            <td>Proの5倍</td>
+            <td>業務ツール開発に最適</td>
+          </tr>
+          <tr>
+            <td>Max 20x</td>
+            <td>$200／月（約¥31,000）</td>
+            <td>Proの20倍</td>
+            <td>大規模・ヘビーユース</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note-xs" style="margin-top:6px;">
+        ※ Anthropic社の料金（2026年7月時点）。最新は <a href="https://claude.com/pricing" target="_blank" style="color:var(--amber);">claude.com/pricing</a> をご確認ください。円換算は目安（$1≒¥155）。
+      </p>
+
+      <h3>4セッション後に手に入るもの</h3>
+      <div class="outcomes-row">
+        <div class="out-item">Claude Code環境が社内で稼働</div>
+        <div class="out-item">業務特化ツールが最低1つ完成</div>
+        <div class="out-item">担当者が自力でツールを作れるスキル</div>
+        <div class="out-item">サブスク内製化のロードマップ</div>
+      </div>
+
+      <h3>パチンコ業界に特化できる理由</h3>
+      <p>
+        業界経験豊富なスタッフが対応するため、業務フローや現場の課題をすぐに理解します。
+        「AI担当者に業界を一から説明する」手間なく、御社の現場語で即座に動ける。それが最大の強みです。
+      </p>
+
+      <div class="examples-mini">
+        <h4>▶ 対象業務の例（パチンコ業界特化）</h4>
+        <p>機種別稼働データの自動集計 ／ 日次・週次レポートの自動作成 ／ 撤去機種選定の自動化 ／ 採用・シフト管理補助 ／ 顧客向けPOP・帳票の自動生成 ／ 売上実績の可視化ダッシュボード</p>
+      </div>
+
+    </div>
+
+    <div class="p2-footer">
+      <div class="left">
+        まずは、御社で内製化できる業務を整理しませんか。
+        <small>費用が発生するのは、正式にご依頼をいただいた後です。</small>
+      </div>
+      <div class="right">
+        Trust Link Partner 株式会社<br>
+        <a href="mailto:info@trust-link-ptnr.com">info@trust-link-ptnr.com</a><br>
+        <a href="https://www.trust-link-ptnr.com" target="_blank">www.trust-link-ptnr.com</a><br>
+        オンライン対応可
+      </div>
+    </div>
+
+    <div class="copy-ft">
+      Trust Link Partner 株式会社 © 2026 Trust Link Partner Co., Ltd. · CONFIDENTIAL
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
